@@ -3,7 +3,7 @@ bootJar {
 }
 
 dependencies {
-    implementation project(':services:shared-event')  // Dependency on shared-event library
+    implementation project(':services:shared-event')
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
