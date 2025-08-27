@@ -2,7 +2,7 @@ package com.bracits.customercommand.infrastructure.web;
 
 import java.util.UUID;
 
-import com.bracits.commonevent.event.RabbitMQConstants;
+import com.bracits.sharedevent.event.RabbitMQConstants;
 import com.bracits.customercommand.application.command.CreateOwnerCommand;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.ResponseEntity;

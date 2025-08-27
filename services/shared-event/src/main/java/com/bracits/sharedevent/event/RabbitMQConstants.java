@@ -1,4 +1,4 @@
-package com.bracits.commonevent.event;
+package com.bracits.sharedevent.event;
 
 public class RabbitMQConstants {
   public static final String CUSTOMER_EXCHANGE = "customer.exchange";

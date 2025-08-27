@@ -1,6 +1,6 @@
-package com.bracits.commonevent.event.appointment;
+package com.bracits.sharedevent.event.appointment;
 
-import com.bracits.commonevent.event.DomainEvent;
+import com.bracits.sharedevent.event.DomainEvent;
 import java.time.Instant;
 
 public record AppointmentCreatedEvent(

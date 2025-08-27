@@ -1,5 +1,6 @@
 rootProject.name = 'pet-clinic-ms-eda-ddd'
 
+include 'services:gateway'
 include 'services:shared-event'
 include 'services:customer-command'
 include 'services:customer-query'

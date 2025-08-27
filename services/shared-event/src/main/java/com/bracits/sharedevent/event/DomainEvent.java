@@ -1,4 +1,4 @@
-package com.bracits.commonevent.event;
+package com.bracits.sharedevent.event;
 
 import java.time.Instant;
 

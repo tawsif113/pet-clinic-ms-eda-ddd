@@ -3,9 +3,9 @@ package com.bracits.customercommand.application.commandhandler;
 import java.time.Instant;
 import java.util.UUID;
 
-import com.bracits.commonevent.event.RabbitMQConstants;
-import com.bracits.commonevent.event.customer.OwnerCreatedEvent;
-import com.bracits.commonevent.event.customer.OwnerUpdatedEvent;
+import com.bracits.sharedevent.event.RabbitMQConstants;
+import com.bracits.sharedevent.event.customer.OwnerCreatedEvent;
+import com.bracits.sharedevent.event.customer.OwnerUpdatedEvent;
 import com.bracits.customercommand.application.command.CreateOwnerCommand;
 import com.bracits.customercommand.application.command.UpdateOwnerCommand;
 import com.bracits.customercommand.domain.model.Owner;

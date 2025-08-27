@@ -1,8 +1,8 @@
-package com.bracits.commonevent.event.customer;
+package com.bracits.sharedevent.event.customer;
 
 import java.time.Instant;
 
-public record OwnerCreatedEvent(
+public record OwnerUpdatedEvent(
     Long ownerId,
     String name,
     String email,

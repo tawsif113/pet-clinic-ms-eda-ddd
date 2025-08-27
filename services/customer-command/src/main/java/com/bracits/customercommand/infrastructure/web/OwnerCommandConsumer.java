@@ -1,6 +1,6 @@
 package com.bracits.customercommand.infrastructure.web;
 
-import com.bracits.commonevent.event.RabbitMQConstants;
+import com.bracits.sharedevent.event.RabbitMQConstants;
 import com.bracits.customercommand.application.command.CreateOwnerCommand;
 import com.bracits.customercommand.application.command.UpdateOwnerCommand;
 import com.bracits.customercommand.application.commandhandler.OwnerCommandHandler;

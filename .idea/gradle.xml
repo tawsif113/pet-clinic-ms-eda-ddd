@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/services" />
             <option value="$PROJECT_DIR$/services/customer-command" />
             <option value="$PROJECT_DIR$/services/customer-query" />
+            <option value="$PROJECT_DIR$/services/gateway" />
             <option value="$PROJECT_DIR$/services/shared-event" />
           </set>
         </option>
@@ -19,7 +20,25 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/services/customer-query" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/services" />
+            <option value="$PROJECT_DIR$/services/customer-command" />
             <option value="$PROJECT_DIR$/services/customer-query" />
+            <option value="$PROJECT_DIR$/services/gateway" />
+            <option value="$PROJECT_DIR$/services/shared-event" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services/gateway" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/services" />
+            <option value="$PROJECT_DIR$/services/customer-command" />
+            <option value="$PROJECT_DIR$/services/customer-query" />
+            <option value="$PROJECT_DIR$/services/gateway" />
+            <option value="$PROJECT_DIR$/services/shared-event" />
           </set>
         </option>
       </GradleProjectSettings>
