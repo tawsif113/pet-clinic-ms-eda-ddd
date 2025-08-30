@@ -23,6 +23,7 @@ public class RabbitMQConfig {
   public static final String GATEWAY_EVENTS_QUEUE = "gateway.appointment.events";
 
   public static final String APPOINTMENT_CREATED_ROUTING_KEY = "appointment.created";
+  public static final String GATEWAY_APPOINTMENT_CREATE_ROUTING_KEY = "gateway.appointment.create";
   public static final String FEEDBACK_ROUTING_KEY = "feedback.event";
 
   @Bean
@@ -69,6 +70,13 @@ public class RabbitMQConfig {
     return BindingBuilder.bind(appointmentCreatedQueue)
         .to(appointmentExchange)
         .with(APPOINTMENT_CREATED_ROUTING_KEY);
+  }
+
+  @Bean
+  public Binding gatewayAppointmentCreateBinding(Queue gatewayEventsQueue, TopicExchange appointmentExchange) {
+    return BindingBuilder.bind(gatewayEventsQueue)
+        .to(appointmentExchange)
+        .with(GATEWAY_APPOINTMENT_CREATE_ROUTING_KEY);
   }
 
   // Note: A binding for the feedback exchange is not created here, as this service *produces*

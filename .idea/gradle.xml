@@ -17,6 +17,14 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services/appointment-command" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/services/appointment-command" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/services/customer-query" />
         <option name="modules">
           <set>
