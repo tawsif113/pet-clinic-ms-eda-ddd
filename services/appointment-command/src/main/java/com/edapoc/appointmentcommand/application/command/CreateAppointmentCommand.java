@@ -5,6 +5,6 @@ import java.util.UUID;
 
 public record CreateAppointmentCommand(
     String traceId,
-    UUID petId,
+    Long petId,
     LocalDateTime appointmentDateTime) {
 }

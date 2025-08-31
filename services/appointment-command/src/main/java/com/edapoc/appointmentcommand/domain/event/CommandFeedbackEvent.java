@@ -7,5 +7,5 @@ public record CommandFeedbackEvent(
     String commandType,
     String status, // SUCCESS | FAILURE
     String message,
-    UUID appointmentId
+    Long appointmentId
 ) {}

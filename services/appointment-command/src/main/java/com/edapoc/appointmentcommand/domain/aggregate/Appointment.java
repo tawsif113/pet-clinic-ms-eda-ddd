@@ -27,7 +27,7 @@ public class Appointment {
     if (appointmentDateTime.isBefore(DateTime.now())) {
       throw new IllegalArgumentException("Appointment time cannot be in the past");
     }
-    return new Appointment(new AppointmentId(UUID.randomUUID()), petId, appointmentDateTime);
+    return new Appointment(null, petId, appointmentDateTime);
   }
 
   public static Appointment fromState(AppointmentId id, PetId petId, DateTime appointmentDateTime, AppointmentStatus status) {

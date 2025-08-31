@@ -1,5 +1,6 @@
 package com.bracits.customercommand.infrastructure.web;
 
+import com.bracits.customercommand.application.command.CreatePetCommand;
 import com.bracits.sharedevent.event.RabbitMQConstants;
 import com.bracits.customercommand.application.command.CreateOwnerCommand;
 import com.bracits.customercommand.application.command.UpdateOwnerCommand;
@@ -23,4 +24,10 @@ public class OwnerCommandConsumer {
   public void consume(UpdateOwnerCommand updateOwnerCommand) {
     ownerCommandHandler.handle(updateOwnerCommand);
   }
+
+  @RabbitListener(queues = RabbitMQConstants.PET_CREATED_COMMAND_QUEUE, containerFactory = "rabbitListenerContainerFactory",ackMode = "AUTO")
+  public void consume(CreatePetCommand createPetCommand) {
+    ownerCommandHandler.handle(createPetCommand);
+  }
+
 }

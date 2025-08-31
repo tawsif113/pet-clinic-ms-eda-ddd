@@ -4,8 +4,8 @@ package com.edapoc.appointmentcommand.presentation.eventconsumer;
 import static com.edapoc.appointmentcommand.infrastructure.config.RabbitMQConfig.GATEWAY_EVENTS_QUEUE;
 
 import com.edapoc.appointmentcommand.application.command.CreateAppointmentCommand;
-import com.edapoc.appointmentcommand.presentation.dto.GatewayCreateAppointmentEvent;
 import com.edapoc.appointmentcommand.application.service.AppointmentCommandService;
+import com.edapoc.appointmentcommand.presentation.dto.GatewayCreateAppointmentEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class GatewayEventConsumer {
 
-  private final AppointmentCommandService commandGateway;
+  private final AppointmentCommandService commandService;
 
   @RabbitListener(queues = GATEWAY_EVENTS_QUEUE)
   public void consumeEvent(GatewayCreateAppointmentEvent gatewayEvent) {
@@ -26,6 +26,6 @@ public class GatewayEventConsumer {
         gatewayEvent.appointmentDateTime()
     );
 
-    commandGateway.send(command);
+    commandService.send(command);
   }
 }

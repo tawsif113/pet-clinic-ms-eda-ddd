@@ -19,7 +19,6 @@ public class AppointmentMapper {
   }
 
   public Appointment toDomain(AppointmentEntity entity) {
-    // Use the new factory method to correctly reconstruct the appointment
     return Appointment.fromState(
         new AppointmentId(entity.getId()),
         new PetId(entity.getPetId()),

@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.springframework.data.repository.Repository;
 
 public interface SpringDataAppointmentRepository extends Repository<AppointmentEntity, UUID> {
-  Optional<AppointmentEntity> findById(UUID value);
+  Optional<AppointmentEntity> findById(Long value);
   AppointmentEntity save(AppointmentEntity entity);
 }
 

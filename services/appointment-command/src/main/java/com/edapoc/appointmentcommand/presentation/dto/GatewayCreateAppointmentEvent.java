@@ -5,6 +5,6 @@ import java.util.UUID;
 
 public record GatewayCreateAppointmentEvent(
     String traceId,
-    UUID petId,
+    Long petId,
     LocalDateTime appointmentDateTime
 ) {}

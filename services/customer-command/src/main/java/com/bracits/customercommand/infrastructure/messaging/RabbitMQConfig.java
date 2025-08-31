@@ -61,6 +61,16 @@ public class RabbitMQConfig {
   }
 
   @Bean
+  public  Queue petCreatedCommandQueue() {
+    return new Queue(RabbitMQConstants.PET_CREATED_COMMAND_QUEUE);
+  }
+
+  @Bean
+  public  Queue petCreatedQueryQueue() {
+    return new Queue(RabbitMQConstants.PET_CREATED_QUERY_QUEUE);
+  }
+
+  @Bean
   public Binding ownerCreatedBinding() {
     return BindingBuilder.bind(ownerCreatedCommandQueue())
         .to(customerExchange())
@@ -83,5 +93,20 @@ public class RabbitMQConfig {
     return BindingBuilder.bind(ownerUpdatedQueryQueue())
         .to(customerExchange())
         .with(RabbitMQConstants.OWNER_UPDATED_QUERY_ROUTING_KEY);
+  }
+
+  @Bean
+  public Binding petCreatedBinding() {
+    return BindingBuilder.bind(petCreatedCommandQueue())
+        .to(customerExchange())
+        .with(RabbitMQConstants.PET_CREATED_COMMAND_ROUTING_KEY);
+  }
+
+  @Bean
+  public Binding petCreatedQueryBinding() {
+    return BindingBuilder.bind(petCreatedQueryQueue())
+        .to(customerExchange())
+        .with(RabbitMQConstants.PET_CREATED_ROUTING_KEY);
+
   }
 }

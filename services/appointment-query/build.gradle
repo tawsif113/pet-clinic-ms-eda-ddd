@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.edapoc'
 version = '0.0.1-SNAPSHOT'
-description = 'appointment-command'
+description = 'appointment-query'
 
 java {
     toolchain {
@@ -25,12 +25,11 @@ repositories {
 }
 
 dependencies {
-    implementation project(':services:shared-event')  // Dependency on shared-event library
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

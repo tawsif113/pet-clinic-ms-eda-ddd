@@ -25,7 +25,7 @@ public class AppointmentEventProducer {
     rabbitTemplate.convertAndSend(APPOINTMENT_EXCHANGE, APPOINTMENT_CREATED_ROUTING_KEY, event);
   }
 
-  public void sendFeedbackEvent(String traceId, String commandType, String status, String message, UUID appointmentId) {
+  public void sendFeedbackEvent(String traceId, String commandType, String status, String message, Long appointmentId) {
     CommandFeedbackEvent feedbackEvent = new CommandFeedbackEvent(traceId, commandType, status, message, appointmentId);
     System.out.println("Sending feedback event: " + feedbackEvent);
     rabbitTemplate.convertAndSend(FEEDBACK_EXCHANGE, FEEDBACK_ROUTING_KEY, feedbackEvent);
