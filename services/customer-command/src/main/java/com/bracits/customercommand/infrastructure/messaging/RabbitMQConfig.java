@@ -1,6 +1,6 @@
 package com.bracits.customercommand.infrastructure.messaging;
 
-import com.bracits.sharedevent.event.RabbitMQConstants;
+import com.bracits.sharedevent.messaging.RabbitMQConstants;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -45,11 +45,11 @@ public class RabbitMQConfig {
 
   @Bean
   public Queue ownerCreatedCommandQueue() {
-    return new Queue(RabbitMQConstants.OWNER_CREATED_COMMAND_QUEUE);
+    return new Queue(RabbitMQConstants.OWNER_CREATE_COMMAND_QUEUE);
   }
   @Bean
   public Queue ownerUpdatedCommandQueue() {
-    return new Queue(RabbitMQConstants.OWNER_UPDATED_COMMAND_QUEUE);
+    return new Queue(RabbitMQConstants.OWNER_UPDATE_COMMAND_QUEUE);
   }
   @Bean
   public Queue ownerCreatedQueryQueue(){
@@ -74,13 +74,13 @@ public class RabbitMQConfig {
   public Binding ownerCreatedBinding() {
     return BindingBuilder.bind(ownerCreatedCommandQueue())
         .to(customerExchange())
-        .with(RabbitMQConstants.OWNER_CREATED_COMMAND_ROUTING_KEY);
+        .with(RabbitMQConstants.OWNER_CREATE_COMMAND_ROUTING_KEY);
   }
   @Bean
   public Binding ownerUpdatedBinding() {
     return BindingBuilder.bind(ownerUpdatedCommandQueue())
         .to(customerExchange())
-        .with(RabbitMQConstants.OWNER_UPDATED_COMMAND_ROUTING_KEY);
+        .with(RabbitMQConstants.OWNER_UPDATE_COMMAND_ROUTING_KEY);
   }
   @Bean
   public Binding ownerQueryCreatedBinding() {
@@ -106,7 +106,7 @@ public class RabbitMQConfig {
   public Binding petCreatedQueryBinding() {
     return BindingBuilder.bind(petCreatedQueryQueue())
         .to(customerExchange())
-        .with(RabbitMQConstants.PET_CREATED_ROUTING_KEY);
+        .with(RabbitMQConstants.PET_CREATED_QUERY_ROUTING_KEY);
 
   }
 }

@@ -1,5 +1,6 @@
-package com.bracits.customerquery.infrastructure.messaging;
+package com.bracits.customerquery.infrastructure.config;
 
+import com.bracits.sharedevent.messaging.RabbitMQConstants;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;

@@ -4,5 +4,6 @@ public record CreatePetCommand(
     String name,
     String species,
     String commandId,
-    Long ownerId
+    Long ownerId,
+    String correlationId
 ) {}

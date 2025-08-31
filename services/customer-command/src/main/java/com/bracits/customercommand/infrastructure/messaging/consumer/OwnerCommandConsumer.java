@@ -1,10 +1,12 @@
 package com.bracits.customercommand.infrastructure.messaging.consumer;
 
-import com.bracits.customercommand.application.command.CreatePetCommand;
-import com.bracits.sharedevent.event.RabbitMQConstants;
 import com.bracits.customercommand.application.command.CreateOwnerCommand;
+import com.bracits.customercommand.application.command.CreatePetCommand;
 import com.bracits.customercommand.application.command.UpdateOwnerCommand;
-import com.bracits.customercommand.application.commandhandler.OwnerCommandHandler;
+import com.bracits.customercommand.application.commandhandler.CreateOwnerCommandHandler;
+import com.bracits.customercommand.application.commandhandler.CreatePetCommandHandler;
+import com.bracits.customercommand.application.commandhandler.UpdateOwnerCommandHandler;
+import com.bracits.sharedevent.messaging.RabbitMQConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
@@ -13,21 +15,23 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OwnerCommandConsumer {
 
-  private final OwnerCommandHandler ownerCommandHandler;
+  private final CreateOwnerCommandHandler createOwnerCommandHandler;
+  private final UpdateOwnerCommandHandler updateOwnerCommandHandler;
+  private final CreatePetCommandHandler createPetCommandHandler;
 
-  @RabbitListener(queues = RabbitMQConstants.OWNER_CREATED_COMMAND_QUEUE, containerFactory = "rabbitListenerContainerFactory",ackMode = "AUTO")
+  @RabbitListener(queues = RabbitMQConstants.OWNER_CREATE_COMMAND_QUEUE, containerFactory = "rabbitListenerContainerFactory",ackMode = "AUTO")
   public void consume(CreateOwnerCommand createOwnerCommand) {
-    ownerCommandHandler.handle(createOwnerCommand);
+    createOwnerCommandHandler.handle(createOwnerCommand);
   }
 
-  @RabbitListener(queues = RabbitMQConstants.OWNER_UPDATED_COMMAND_QUEUE, containerFactory = "rabbitListenerContainerFactory",ackMode = "AUTO")
+  @RabbitListener(queues = RabbitMQConstants.OWNER_UPDATE_COMMAND_QUEUE, containerFactory = "rabbitListenerContainerFactory",ackMode = "AUTO")
   public void consume(UpdateOwnerCommand updateOwnerCommand) {
-    ownerCommandHandler.handle(updateOwnerCommand);
+    updateOwnerCommandHandler.handle(updateOwnerCommand);
   }
 
   @RabbitListener(queues = RabbitMQConstants.PET_CREATED_COMMAND_QUEUE, containerFactory = "rabbitListenerContainerFactory",ackMode = "AUTO")
   public void consume(CreatePetCommand createPetCommand) {
-    ownerCommandHandler.handle(createPetCommand);
+    createPetCommandHandler.handle(createPetCommand);
   }
 
 }

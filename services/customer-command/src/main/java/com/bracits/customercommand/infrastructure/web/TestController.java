@@ -3,7 +3,7 @@ package com.bracits.customercommand.infrastructure.web;
 import com.bracits.customercommand.application.command.CreatePetCommand;
 import java.util.UUID;
 
-import com.bracits.sharedevent.event.RabbitMQConstants;
+import com.bracits.sharedevent.messaging.RabbitMQConstants;
 import com.bracits.customercommand.application.command.CreateOwnerCommand;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +42,7 @@ public class TestController {
 
     rabbitTemplate.convertAndSend(
         RabbitMQConstants.CUSTOMER_EXCHANGE,
-        RabbitMQConstants.OWNER_CREATED_COMMAND_ROUTING_KEY,
+        RabbitMQConstants.OWNER_CREATE_COMMAND_ROUTING_KEY,
         cmd
     );
 
@@ -59,7 +59,8 @@ public class TestController {
         name,
         species,
         UUID.randomUUID().toString(),
-        ownerId
+        ownerId,
+        UUID.randomUUID().toString()
     );
 
     rabbitTemplate.convertAndSend(

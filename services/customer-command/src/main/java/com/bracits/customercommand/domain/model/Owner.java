@@ -42,4 +42,13 @@ public class Owner {
   }
 
   public void update(String name, String email) { this.name = name; this.email = email; }
+
+  public void updatePet(Long petId, String name, String species)
+  {
+    this.getPets().stream().filter(o -> o.getId().equals(petId)).findFirst().ifPresent(pet -> {
+      pet.setName(name);
+      pet.setSpecies(species);
+    });
+  }
+
 }

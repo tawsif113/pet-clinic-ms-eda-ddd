@@ -37,4 +37,18 @@ public class OwnerEntity{
         this.name = (name != null)?name:this.name;
         this.email = (email != null)?email:this.email;
     }
+
+    public void addPet(Long petId, String petName){
+        PetEntity pet = new PetEntity();
+        pet.setId(petId);
+        pet.setName(petName);
+        pet.setOwner(this);
+        this.pets.add(pet);
+    }
+
+    public void updatePet(Long petId, String petName, String petSpecies){
+        PetEntity pet = this.pets.stream().filter(p -> p.getId().equals(petId)).findFirst().orElseThrow(() -> new RuntimeException("Pet not found"));
+        pet.setName((petName!=null)?petName:pet.getName());
+        pet.setSpecies((petSpecies!=null)?petSpecies:pet.getSpecies());
+    }
 }

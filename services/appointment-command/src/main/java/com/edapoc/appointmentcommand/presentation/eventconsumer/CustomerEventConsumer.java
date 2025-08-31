@@ -1,6 +1,6 @@
 package com.edapoc.appointmentcommand.presentation.eventconsumer;
 
-import com.bracits.sharedevent.event.RabbitMQConstants;
+import com.bracits.sharedevent.messaging.RabbitMQConstants;
 import com.bracits.sharedevent.event.customer.PetCreatedEvent;
 import com.edapoc.appointmentcommand.domain.aggregate.CustomerRepository;
 import com.edapoc.appointmentcommand.domain.entity.Customer;
