@@ -9,6 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/services" />
+            <option value="$PROJECT_DIR$/services/appointment-command" />
+            <option value="$PROJECT_DIR$/services/appointment-query" />
             <option value="$PROJECT_DIR$/services/customer-command" />
             <option value="$PROJECT_DIR$/services/customer-query" />
             <option value="$PROJECT_DIR$/services/gateway" />
@@ -20,7 +22,14 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/services/appointment-command" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/services" />
             <option value="$PROJECT_DIR$/services/appointment-command" />
+            <option value="$PROJECT_DIR$/services/appointment-query" />
+            <option value="$PROJECT_DIR$/services/customer-command" />
+            <option value="$PROJECT_DIR$/services/customer-query" />
+            <option value="$PROJECT_DIR$/services/gateway" />
+            <option value="$PROJECT_DIR$/services/shared-event" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -30,6 +39,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/services" />
+            <option value="$PROJECT_DIR$/services/appointment-command" />
+            <option value="$PROJECT_DIR$/services/appointment-query" />
             <option value="$PROJECT_DIR$/services/customer-command" />
             <option value="$PROJECT_DIR$/services/customer-query" />
             <option value="$PROJECT_DIR$/services/gateway" />
@@ -43,6 +54,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/services" />
+            <option value="$PROJECT_DIR$/services/appointment-command" />
+            <option value="$PROJECT_DIR$/services/appointment-query" />
             <option value="$PROJECT_DIR$/services/customer-command" />
             <option value="$PROJECT_DIR$/services/customer-query" />
             <option value="$PROJECT_DIR$/services/gateway" />

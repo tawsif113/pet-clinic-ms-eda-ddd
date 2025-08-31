@@ -1,6 +1,7 @@
 package com.bracits.customercommand.application.commandhandler;
 
 import com.bracits.customercommand.application.command.CreatePetCommand;
+import com.bracits.customercommand.domain.model.Pet;
 import com.bracits.sharedevent.event.customer.PetCreatedEvent;
 import java.time.Instant;
 import java.util.UUID;
@@ -14,10 +15,12 @@ import com.bracits.customercommand.domain.model.Owner;
 import com.bracits.customercommand.domain.repository.OwnerRepository;
 import com.bracits.customercommand.infrastructure.messaging.publisher.EventPublisher;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OwnerCommandHandler {
 
   private final OwnerRepository ownerRepository;
@@ -63,13 +66,21 @@ public class OwnerCommandHandler {
   public void handle(CreatePetCommand createPetCommand){
     Owner owner = ownerRepository.findById(createPetCommand.ownerId()).orElseThrow(() -> new RuntimeException("Owner not found"));
     owner.addPet(createPetCommand.name(), createPetCommand.species());
-    ownerRepository.save(owner);
+    owner = ownerRepository.saveAndFlush(owner);
+
+    Pet persistedPet = owner.getPets().stream()
+            .filter(p -> p.getName().equals(createPetCommand.name())
+                    && p.getSpecies().equals(createPetCommand.species()))
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("Pet not found after save"));
+
+    log.info("{}",persistedPet.getId());
 
     PetCreatedEvent event = new PetCreatedEvent(
         owner.getId(),
         owner.getName(),
         owner.getEmail(),
-        1L,
+        persistedPet.getId(),
         UUID.randomUUID().toString(),
         "10",
         Instant.now(),
