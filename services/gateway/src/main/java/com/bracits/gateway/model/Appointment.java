@@ -1,4 +1,4 @@
-package com.edapoc.appointmentquery.domain.entity;
+package com.bracits.gateway.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,8 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Appointment {
   @Id
-  private Long appointmentId;
+  private Long id;
   private Long petId;
   private LocalDateTime appointmentDateTime;
-  private String status;
 }

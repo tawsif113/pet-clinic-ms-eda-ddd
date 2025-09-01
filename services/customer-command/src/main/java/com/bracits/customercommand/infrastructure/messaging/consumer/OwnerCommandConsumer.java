@@ -1,5 +1,10 @@
 package com.bracits.customercommand.infrastructure.messaging.consumer;
 
+<<<<<<< Updated upstream
+=======
+import com.bracits.customercommand.application.command.CreatePetCommand;
+import com.bracits.sharedevent.event.infrastructure.messasing.constant.RabbitMQConstants;
+>>>>>>> Stashed changes
 import com.bracits.customercommand.application.command.CreateOwnerCommand;
 import com.bracits.customercommand.application.command.CreatePetCommand;
 import com.bracits.customercommand.application.command.UpdateOwnerCommand;

@@ -3,7 +3,11 @@ package com.bracits.customercommand.infrastructure.web;
 import com.bracits.customercommand.application.command.CreatePetCommand;
 import java.util.UUID;
 
+<<<<<<< Updated upstream
 import com.bracits.sharedevent.messaging.RabbitMQConstants;
+=======
+import com.bracits.sharedevent.event.infrastructure.messasing.constant.RabbitMQConstants;
+>>>>>>> Stashed changes
 import com.bracits.customercommand.application.command.CreateOwnerCommand;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.ResponseEntity;

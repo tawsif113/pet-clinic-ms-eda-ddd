@@ -2,11 +2,9 @@ package com.edapoc.appointmentcommand.application.commandhandler;
 
 import com.edapoc.appointmentcommand.application.command.CreateAppointmentCommand;
 import com.edapoc.appointmentcommand.application.eventproducer.AppointmentEventProducer;
-import com.edapoc.appointmentcommand.domain.aggregate.Appointment;
-import com.edapoc.appointmentcommand.domain.aggregate.AppointmentRepository;
-import com.edapoc.appointmentcommand.domain.aggregate.CustomerRepository;
-import com.edapoc.appointmentcommand.domain.valueobject.DateTime;
-import com.edapoc.appointmentcommand.domain.valueobject.PetId;
+import com.edapoc.appointmentcommand.domain.model.Appointment;
+import com.edapoc.appointmentcommand.domain.repository.AppointmentRepository;
+import com.edapoc.appointmentcommand.domain.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,12 +26,12 @@ public class CreateAppointmentCommandHandler {
       return;
     }
 
-    var appointment = Appointment.create(new PetId(command.petId()), new DateTime(command.appointmentDateTime()));
+    var appointment = Appointment.create(command.petId(), command.appointmentDateTime());
     appointmentRepository.save(appointment);
-    System.out.println("Appointment created with ID: " + appointment.getId().value());
+    System.out.println("Appointment created with ID: " + appointment.getId());
 
     eventProducer.sendAppointmentCreatedEvent(appointment.appointmentCreatedEvent());
-    eventProducer.sendFeedbackEvent(command.traceId(), "CreateAppointmentCommand", "SUCCESS", "Appointment created successfully", appointment.getId().value());
+    eventProducer.sendFeedbackEvent(command.traceId(), "CreateAppointmentCommand", "SUCCESS", "Appointment created successfully", appointment.getId());
   }
 }
 

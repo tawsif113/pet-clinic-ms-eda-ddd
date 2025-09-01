@@ -1,10 +1,9 @@
 package com.edapoc.appointmentcommand.domain.event;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public record AppointmentCreatedEvent(
-  Long petId,
   Long appointmentId,
+  Long petId,
   LocalDateTime appointmentDateTime
 ) {}
