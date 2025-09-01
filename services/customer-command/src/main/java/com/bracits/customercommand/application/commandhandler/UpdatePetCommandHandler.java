@@ -2,7 +2,6 @@ package com.bracits.customercommand.application.commandhandler;
 
 import com.bracits.customercommand.application.command.UpdatePetCommand;
 import com.bracits.customercommand.domain.model.Owner;
-import com.bracits.customercommand.domain.model.Pet;
 import com.bracits.customercommand.domain.repository.OwnerRepository;
 import com.bracits.customercommand.infrastructure.messaging.publisher.EventPublisher;
 import com.bracits.sharedevent.event.customer.PetUpdatedEvent;

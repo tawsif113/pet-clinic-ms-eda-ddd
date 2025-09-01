@@ -1,12 +1,12 @@
-package com.bracits.customerquery.domain.model;
+package com.bracits.sharedevent.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface OwnerReadModel {
+public interface OwnerReadResponseDto {
     Long getId();
     String getName();
     String getEmail();
-    List<PetReadModel> getPets();
+    List<PetReadResponseDto> getPets();
     LocalDateTime getLastUpdated();
 }
