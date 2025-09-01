@@ -1,17 +1,18 @@
-package com.bracits.customercommand.application.commandhandler;
+package com.bracits.customercommand.application.service;
 
 import com.bracits.customercommand.application.command.Command;
+import com.bracits.customercommand.application.commandhandler.CommandHandler;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CommandHandlerRegistry {
+public class CustomerCommandHandlerRegistry {
 
   private final Map<Class<? extends Command>, CommandHandler<?>> handlers = new HashMap<>();
 
-  public CommandHandlerRegistry(List<CommandHandler<?>> handlerList) {
+  public CustomerCommandHandlerRegistry(List<CommandHandler<?>> handlerList) {
     handlerList.forEach(handler -> handlers.put(handler.getCommandType(), handler));
   }
 

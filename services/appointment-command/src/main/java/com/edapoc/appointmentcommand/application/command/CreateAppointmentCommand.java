@@ -3,7 +3,8 @@ package com.edapoc.appointmentcommand.application.command;
 import java.time.LocalDateTime;
 
 public record CreateAppointmentCommand(
-    String traceId,
+    String correlationId,
     Long petId,
-    LocalDateTime appointmentDateTime) {
+    LocalDateTime appointmentDateTime) implements Command {
+
 }

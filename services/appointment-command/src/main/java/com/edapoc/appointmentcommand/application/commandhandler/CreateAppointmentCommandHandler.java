@@ -5,24 +5,26 @@ import com.edapoc.appointmentcommand.application.eventproducer.AppointmentEventP
 import com.edapoc.appointmentcommand.domain.model.Appointment;
 import com.edapoc.appointmentcommand.domain.repository.AppointmentRepository;
 import com.edapoc.appointmentcommand.domain.repository.CustomerRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class CreateAppointmentCommandHandler {
+public class CreateAppointmentCommandHandler implements CommandHandler<CreateAppointmentCommand> {
 
   private final AppointmentRepository appointmentRepository;
   private final AppointmentEventProducer eventProducer;
   private final CustomerRepository customerRepository;
 
   @Transactional
+  @Override
   public void handle(CreateAppointmentCommand command) {
     var customer = customerRepository.findById(command.petId());
 
     if (customer.isEmpty()) {
-      eventProducer.sendFeedbackEvent(command.traceId(), "CreateAppointmentCommand", "FAILURE", "Customer not found", null);
+      eventProducer.sendFeedbackEvent(command.correlationId(), "CreateAppointmentCommand",
+          "FAILURE", "Customer not found", null);
       return;
     }
 
@@ -31,7 +33,13 @@ public class CreateAppointmentCommandHandler {
     System.out.println("Appointment created with ID: " + appointment.getId());
 
     eventProducer.sendAppointmentCreatedEvent(appointment.appointmentCreatedEvent());
-    eventProducer.sendFeedbackEvent(command.traceId(), "CreateAppointmentCommand", "SUCCESS", "Appointment created successfully", appointment.getId());
+    eventProducer.sendFeedbackEvent(command.correlationId(), "CreateAppointmentCommand", "SUCCESS",
+        "Appointment created successfully", appointment.getId());
+  }
+
+  @Override
+  public Class<CreateAppointmentCommand> getCommandType() {
+    return CreateAppointmentCommand.class;
   }
 }
 
