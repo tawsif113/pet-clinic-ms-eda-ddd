@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
   List<Appointment> findByPetId(Long petId);
+  List<Appointment> findByOwnerId(Long ownerId);
 }

@@ -1,9 +1,9 @@
 package com.edapoc.appointmentcommand.infrastructure.messasing.eventconsumer;
 
-import com.bracits.sharedevent.event.customer.PetCreatedEvent;
 import com.bracits.sharedevent.messaging.RabbitMQConstants;
-import com.edapoc.appointmentcommand.domain.entity.Customer;
+import com.bracits.sharedevent.event.customer.PetCreatedEvent;
 import com.edapoc.appointmentcommand.domain.repository.CustomerRepository;
+import com.edapoc.appointmentcommand.domain.entity.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

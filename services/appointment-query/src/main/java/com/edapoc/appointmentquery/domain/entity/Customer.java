@@ -3,7 +3,6 @@ package com.edapoc.appointmentquery.domain.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,14 +11,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "appointments_read")
-@AllArgsConstructor
+@Table(name = "customers_read")
 @NoArgsConstructor
-public class Appointment {
+@AllArgsConstructor
+public class Customer {
+
   @Id
-  private Long appointmentId;
   private Long petId;
   private Long ownerId;
-  private LocalDateTime appointmentDateTime;
-  private String status;
 }
+

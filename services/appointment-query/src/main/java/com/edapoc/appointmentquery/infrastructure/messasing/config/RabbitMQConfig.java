@@ -16,9 +16,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String APPOINTMENT_EXCHANGE = "appointment.exchange";
-    public static final String APPOINTMENT_CREATED_QUEUE = "appointment.created.query.queue";
-    public static final String APPOINTMENT_CREATED_ROUTING_KEY = "appointment.created";
+  // Exchanges
+  public static final String APPOINTMENT_EXCHANGE = "appointment.exchange";
+  public static final String CUSTOMER_EXCHANGE = "customer.exchange";
+
+  // Appointment Queues & Routing Keys
+  public static final String APPOINTMENT_CREATED_QUEUE = "appointment.created.queue.query";
+  public static final String APPOINTMENT_CREATED_ROUTING_KEY = "appointment.created";
+
+  // Customer Queues & Routing Keys
+  public static final String CUSTOMER_PET_CREATED_QUEUE = "customer.pet.created.queue.query";
+  public static final String CUSTOMER_PET_CREATED_ROUTING_KEY = "customer.pet.created";
 
   @Bean
   public ObjectMapper objectMapper() {
@@ -45,8 +53,18 @@ public class RabbitMQConfig {
   }
 
   @Bean
+  public TopicExchange customerExchange() {
+    return new TopicExchange(CUSTOMER_EXCHANGE);
+  }
+
+  @Bean
   public Queue appointmentCreatedQueue() {
     return new Queue(APPOINTMENT_CREATED_QUEUE, true);
+  }
+
+  @Bean
+  public Queue petCreatedQueue() {
+    return new Queue(CUSTOMER_PET_CREATED_QUEUE, true);
   }
 
   @Bean
@@ -54,5 +72,12 @@ public class RabbitMQConfig {
     return BindingBuilder.bind(appointmentCreatedQueue)
         .to(appointmentExchange)
         .with(APPOINTMENT_CREATED_ROUTING_KEY);
+  }
+
+  @Bean
+  public Binding petCreatedBinding(Queue petCreatedQueue, TopicExchange customerExchange) {
+    return BindingBuilder.bind(petCreatedQueue)
+        .to(customerExchange)
+        .with(CUSTOMER_PET_CREATED_ROUTING_KEY);
   }
 }

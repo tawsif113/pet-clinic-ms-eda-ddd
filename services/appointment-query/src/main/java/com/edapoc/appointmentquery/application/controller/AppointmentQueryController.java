@@ -1,7 +1,9 @@
 package com.edapoc.appointmentquery.application.controller;
 
 import com.edapoc.appointmentquery.application.dto.AppointmentDetailsDto;
+import com.edapoc.appointmentquery.application.query.GetOwnerAppointmentsQuery;
 import com.edapoc.appointmentquery.application.query.GetPetsAppointmentQuery;
+import com.edapoc.appointmentquery.application.queryhandler.GetOwnerAppointmentsQueryHandler;
 import com.edapoc.appointmentquery.application.queryhandler.GetPetsAppointmentQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,19 @@ import java.util.List;
 public class AppointmentQueryController {
 
   private final GetPetsAppointmentQueryHandler getPetsAppointmentQueryHandler;
+  private final GetOwnerAppointmentsQueryHandler getOwnerAppointmentsQueryHandler;
 
   @GetMapping("/pet/{petId}")
   public ResponseEntity<List<AppointmentDetailsDto>> getAppointmentsByPetId(@PathVariable Long petId) {
     GetPetsAppointmentQuery query = new GetPetsAppointmentQuery(petId);
     List<AppointmentDetailsDto> appointments = getPetsAppointmentQueryHandler.handle(query);
+    return ResponseEntity.ok(appointments);
+  }
+
+  @GetMapping("/owner/{ownerId}")
+  public ResponseEntity<List<AppointmentDetailsDto>> getAppointmentsByOwnerId(@PathVariable Long ownerId) {
+    GetOwnerAppointmentsQuery query = new GetOwnerAppointmentsQuery(ownerId);
+    List<AppointmentDetailsDto> appointments = getOwnerAppointmentsQueryHandler.handle(query);
     return ResponseEntity.ok(appointments);
   }
 }
