@@ -1,10 +1,6 @@
 package com.bracits.customercommand.infrastructure.messaging;
 
-<<<<<<< Updated upstream
 import com.bracits.sharedevent.messaging.RabbitMQConstants;
-=======
-import com.bracits.sharedevent.event.infrastructure.messasing.constant.RabbitMQConstants;
->>>>>>> Stashed changes
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;

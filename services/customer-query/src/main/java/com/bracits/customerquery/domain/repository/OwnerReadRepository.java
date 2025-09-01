@@ -31,16 +31,6 @@ public interface OwnerReadRepository extends JpaRepository<OwnerEntity, Long> {
             o.email
         )
         FROM OwnerEntity o
-        WHERE
-            (:name IS NULL OR o.name LIKE CONCAT('%', :name, '%')) AND
-            (:email IS NULL OR o.email LIKE CONCAT('%', :email, '%'))
-        ORDER BY o.name
     """)
-    Page<OwnerResponseDto> findByNameAndEmail(@Param("name") String name,
-                                              @Param("email") String email,
-                                              Pageable pageable);
-
-    Page<OwnerReadResponseDto> findAllBy(Pageable pageable);
-
-    Optional<OwnerReadResponseDto> findOwnerWithPetsById(@Param("id") Long id);
+    Page<OwnerResponseDto> findAllBy(Pageable pageable);
 }

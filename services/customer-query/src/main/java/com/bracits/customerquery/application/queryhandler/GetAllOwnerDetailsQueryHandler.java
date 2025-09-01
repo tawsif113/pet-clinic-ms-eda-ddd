@@ -1,8 +1,8 @@
 package com.bracits.customerquery.application.queryhandler;
 
 import com.bracits.customerquery.application.query.GetAllOwnerDetailsQuery;
-import com.bracits.sharedevent.dto.OwnerReadResponseDto;
 import com.bracits.customerquery.domain.repository.OwnerReadRepository;
+import com.bracits.sharedevent.dto.OwnerResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class GetAllOwnerDetailsQueryHandler {
     private final OwnerReadRepository ownerReadRepository;
 
-    public Page<OwnerReadResponseDto> query(GetAllOwnerDetailsQuery query) {
+    public Page<OwnerResponseDto> query(GetAllOwnerDetailsQuery query) {
         Pageable pageable = PageRequest.of(query.page(), query.size());
         return ownerReadRepository.findAllBy(pageable);
     }

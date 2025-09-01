@@ -5,7 +5,7 @@ import com.bracits.customercommand.application.command.CreatePetCommand;
 import com.bracits.customercommand.application.command.UpdateOwnerCommand;
 import com.bracits.customercommand.application.command.UpdatePetCommand;
 import com.bracits.customercommand.application.service.CustomerCommandHandlerRegistry;
-import com.bracits.sharedevent.event.infrastructure.messasing.constant.RabbitMQConstants;
+import com.bracits.sharedevent.messaging.RabbitMQConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;

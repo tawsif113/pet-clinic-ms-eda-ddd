@@ -1,6 +1,6 @@
 package com.bracits.customerquery.application.controller;
 
-import com.bracits.sharedevent.dto.OwnerResponseDto;
+import com.bracits.sharedevent.dto.*;
 import com.bracits.customerquery.application.query.GetAllOwnerDetailsQuery;
 import com.bracits.customerquery.application.query.GetOwnerByIdQuery;
 import com.bracits.customerquery.application.query.GetOwnerWithPetsQuery;
@@ -9,12 +9,12 @@ import com.bracits.customerquery.application.queryhandler.GetAllOwnerDetailsQuer
 import com.bracits.customerquery.application.queryhandler.GetOwnerByIdQueryHandler;
 import com.bracits.customerquery.application.queryhandler.GetOwnerWithPetsQueryHandler;
 import com.bracits.customerquery.application.queryhandler.GetPetByIdQueryHandler;
-import com.bracits.sharedevent.dto.OwnerReadResponseDto;
-import com.bracits.sharedevent.dto.PetReadResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,12 +28,24 @@ public class CustomerQueryController {
 
 
     @GetMapping("/owners")
-    public ResponseEntity<Page<OwnerReadResponseDto>> getAllOwners(
+    public ResponseEntity<OwnerPageDto> getAllOwners(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         GetAllOwnerDetailsQuery query = new GetAllOwnerDetailsQuery(page, size);
-        Page<OwnerReadResponseDto> owners = getAllOwnerDetailsQueryHandler.query(query);
-        return ResponseEntity.ok(owners);
+        Page<OwnerResponseDto> owners = getAllOwnerDetailsQueryHandler.query(query);
+        List<OwnerResponseDto> ownerDtos = owners.getContent().stream()
+                .map(o -> new OwnerResponseDto(o.getId(), o.getName(), o.getEmail()))
+                .toList();
+
+        OwnerPageDto ownerPageDto = new OwnerPageDto(
+                ownerDtos,
+                owners.getNumber(),
+                owners.getSize(),
+                owners.getTotalElements(),
+                owners.getTotalPages(),
+                owners.isLast()
+        );
+        return ResponseEntity.ok(ownerPageDto);
     }
 
     @GetMapping("/owners/{ownerId}")
@@ -44,16 +56,16 @@ public class CustomerQueryController {
     }
 
     @GetMapping("/owners/{ownerId}/pets")
-    public ResponseEntity<OwnerReadResponseDto> getOwnerWithPets(@PathVariable Long ownerId) {
+    public ResponseEntity<List<PetResponseDto>> getOwnerWithPets(@PathVariable Long ownerId) {
         GetOwnerWithPetsQuery query = new GetOwnerWithPetsQuery(ownerId);
-        OwnerReadResponseDto owner = getOwnerWithPetsQueryHandler.query(query);
-        return ResponseEntity.ok(owner);
+        List<PetResponseDto> pets = getOwnerWithPetsQueryHandler.query(query);
+        return ResponseEntity.ok(pets);
     }
 
     @GetMapping("/pets/{petId}")
-    public ResponseEntity<PetReadResponseDto> getPetById(@PathVariable Long petId) {
+    public ResponseEntity<PetResponseDto> getPetById(@PathVariable Long petId) {
         GetPetByIdQuery getPetByIdQuery = new GetPetByIdQuery(petId);
-        PetReadResponseDto pet = getPetByIdQueryHandler.query(getPetByIdQuery);
+        PetResponseDto pet = getPetByIdQueryHandler.query(getPetByIdQuery);
         return ResponseEntity.ok(pet);
     }
 

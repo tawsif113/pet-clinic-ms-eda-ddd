@@ -19,24 +19,25 @@ subprojects {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
+            languageVersion.set(JavaLanguageVersion.of(21))
         }
     }
 
     dependencyManagement {
         imports {
-            mavenBom "org.springframework.boot:spring-boot-dependencies:3.5.5"
+            mavenBom ("org.springframework.boot:spring-boot-dependencies:3.5.5")
         }
     }
 
     dependencies {
+        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
         implementation 'org.springframework.boot:spring-boot-starter-amqp'
         testImplementation platform('org.junit:junit-bom:5.10.0')
         testImplementation 'org.junit.jupiter:junit-jupiter'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 
-    tasks.named('test') {
+    tasks.named('test').configure{
         useJUnitPlatform()
     }
 }
