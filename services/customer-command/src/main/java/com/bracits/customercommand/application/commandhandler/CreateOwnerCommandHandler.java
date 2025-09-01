@@ -31,14 +31,10 @@ public class CreateOwnerCommandHandler implements CommandHandler<CreateOwnerComm
         createOwnerCommand.correlationId(),
         Instant.now()
     );
-    eventPublisher.publishEvent(
-        RabbitMQConstants.CUSTOMER_EXCHANGE,
-        RabbitMQConstants.OWNER_CREATED_COMMAND_ROUTING_KEY,
-        ownerCreatedEvent
-    );
+
     eventPublisher.publishEvent(
             RabbitMQConstants.CUSTOMER_EXCHANGE,
-            RabbitMQConstants.OWNER_CREATED_QUERY_ROUTING_KEY,
+            RabbitMQConstants.OWNER_CREATED_EVENT_ROUTING_KEY,
             ownerCreatedEvent
     );
   }

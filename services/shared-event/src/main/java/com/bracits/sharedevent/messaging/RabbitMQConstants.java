@@ -10,9 +10,8 @@ public class RabbitMQConstants {
     public static final String OWNER_UPDATED_QUERY_QUEUE = "owner.updated.query.queue";
 
     public static final String OWNER_CREATE_COMMAND_ROUTING_KEY = "owner.create.command.routing.key";
-    public static final String OWNER_CREATED_COMMAND_ROUTING_KEY = "owner.created.command.routing.key";
+    public static final String OWNER_CREATED_EVENT_ROUTING_KEY = "owner.created.event.routing.key";
     public static final String OWNER_UPDATE_COMMAND_ROUTING_KEY = "owner.updated.command.routing.key";
-    public static final String OWNER_CREATED_QUERY_ROUTING_KEY = "owner.created.query.routing.key";
     public static final String OWNER_UPDATED_QUERY_ROUTING_KEY = "owner.updated.query.routing.key";
 
     public static final String PET_CREATED_COMMAND_QUEUE = "pet.created.command.queue";
