@@ -2,7 +2,9 @@ package com.bracits.gateway.controller;
 
 import com.bracits.gateway.dto.OwnerRequestDto;
 import com.bracits.gateway.service.CustomerWebClientService;
+import com.bracits.gateway.service.OwnerService;
 import com.bracits.sharedevent.dto.*;
+import com.bracits.sharedevent.event.customer.OwnerCreatedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerWebClientService customerWebClientService;
+    private final OwnerService ownerService;
 
     @GetMapping("/owners")
     public ResponseEntity<OwnerPageDto> getAllOwners(
@@ -39,8 +42,8 @@ public class CustomerController {
     }
 
     @PostMapping("/owners")
-    public ResponseEntity<OwnerResponseDto> createOwner(@RequestBody OwnerRequestDto ownerRequestDto) {
-        return null;
+    public ResponseEntity<OwnerCreatedEvent> createOwner(@RequestBody OwnerRequestDto ownerRequestDto) throws Exception {
+        return ResponseEntity.ok(ownerService.createOwner(ownerRequestDto));
     }
 
 }

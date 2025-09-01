@@ -22,7 +22,7 @@ public class CustomerEventConsumer {
     private final CreatePetEventHandler createPetEventHandler;
     private final UpdateOwnerEventHandler updateOwnerEventHandler;
 
-    @RabbitListener(queues = RabbitMQConstants.OWNER_CREATED_QUERY_QUEUE, containerFactory = "rabbitListenerContainerFactory", ackMode = "AUTO")
+    @RabbitListener(queues = RabbitMQConstants.OWNER_CREATED_COMMAND_QUEUE, containerFactory = "rabbitListenerContainerFactory", ackMode = "AUTO")
     public void consume(OwnerCreatedEvent ownerCreatedEvent) {
         createOwnerEventHandler.handle(ownerCreatedEvent);
     }
