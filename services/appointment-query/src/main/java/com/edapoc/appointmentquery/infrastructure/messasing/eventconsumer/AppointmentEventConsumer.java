@@ -10,8 +10,6 @@ import com.edapoc.appointmentquery.domain.repository.CustomerRepository;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class AppointmentEventConsumer {
 
   private final AppointmentRepository appointmentRepository;
-  private final CustomerRepository customerRepository; // Injected to look up customer data
+  private final CustomerRepository customerRepository;
 
   @RabbitListener(queues = APPOINTMENT_CREATED_QUEUE)
   public void consumeAppointmentCreatedEvent(AppointmentCreatedEvent event) {

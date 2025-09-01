@@ -19,7 +19,7 @@ public class GetPetsAppointmentQueryHandler {
 
   @Transactional(readOnly = true)
   public List<AppointmentDetailsDto> handle(GetPetsAppointmentQuery query) {
-    List<Appointment> appointments = appointmentRepository.findByPetId(query.petId());
+    List<Appointment> appointments = appointmentRepository.findByPetIdIn(query.petIds());
     return appointmentMapper.toDtoList(appointments);
   }
 }

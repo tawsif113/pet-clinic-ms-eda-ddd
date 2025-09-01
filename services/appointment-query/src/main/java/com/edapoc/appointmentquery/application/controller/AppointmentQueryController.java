@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class AppointmentQueryController {
   private final GetPetsAppointmentQueryHandler getPetsAppointmentQueryHandler;
   private final GetOwnerAppointmentsQueryHandler getOwnerAppointmentsQueryHandler;
 
-  @GetMapping("/pet/{petId}")
-  public ResponseEntity<List<AppointmentDetailsDto>> getAppointmentsByPetId(@PathVariable Long petId) {
-    GetPetsAppointmentQuery query = new GetPetsAppointmentQuery(petId);
+  @GetMapping("/pet")
+  public ResponseEntity<List<AppointmentDetailsDto>> getAppointmentsByPetIds(@RequestParam List<Long> petIds) {
+    GetPetsAppointmentQuery query = new GetPetsAppointmentQuery(petIds);
     List<AppointmentDetailsDto> appointments = getPetsAppointmentQueryHandler.handle(query);
     return ResponseEntity.ok(appointments);
   }
