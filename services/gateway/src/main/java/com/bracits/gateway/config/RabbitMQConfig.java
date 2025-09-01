@@ -37,4 +37,116 @@ public class RabbitMQConfig {
         factory.setMessageConverter(messageConverter);
         return factory;
     }
+
+    @Bean
+    public TopicExchange customerExchange() {
+        return new TopicExchange(RabbitMQConstants.CUSTOMER_EXCHANGE);
+    }
+
+    @Bean
+    public Queue ownerCreatedCommandQueue() {
+        return new Queue(RabbitMQConstants.OWNER_CREATED_COMMAND_QUEUE);
+    }
+
+    @Bean
+    public Queue ownerCreateCommandQueue(){ return new Queue(RabbitMQConstants.OWNER_CREATE_COMMAND_QUEUE); }
+
+    @Bean
+    public Queue ownerUpdatedCommandQueue() {
+        return new Queue(RabbitMQConstants.OWNER_UPDATE_COMMAND_QUEUE);
+    }
+
+    @Bean
+    public Queue ownerCreatedQueryQueue() {
+        return new Queue(RabbitMQConstants.OWNER_CREATED_QUERY_QUEUE);
+    }
+
+    @Bean
+    public Queue ownerUpdatedQueryQueue() {
+        return new Queue(RabbitMQConstants.OWNER_UPDATED_QUERY_QUEUE);
+    }
+
+    @Bean
+    public Queue petCreatedCommandQueue() {
+        return new Queue(RabbitMQConstants.PET_CREATED_COMMAND_QUEUE);
+    }
+
+    @Bean
+    public Queue petCreatedQueryQueue() {
+        return new Queue(RabbitMQConstants.PET_CREATED_QUERY_QUEUE);
+    }
+
+    @Bean
+    public Queue petUpdatedCommandQueue() {
+        return new Queue(RabbitMQConstants.PET_UPDATE_COMMAND_QUEUE);
+    }
+
+    @Bean
+    public Queue petUpdatedQueryQueue() {
+        return new Queue(RabbitMQConstants.PET_UPDATED_QUERY_QUEUE);
+    }
+
+    @Bean
+    public Binding ownerCreateBinding() {
+        return BindingBuilder.bind(ownerCreateCommandQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.OWNER_CREATE_COMMAND_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding ownerCreatedBinding() {
+        return BindingBuilder.bind(ownerCreatedCommandQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.OWNER_CREATED_COMMAND_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding ownerUpdatedBinding() {
+        return BindingBuilder.bind(ownerUpdatedCommandQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.OWNER_UPDATE_COMMAND_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding ownerQueryCreatedBinding() {
+        return BindingBuilder.bind(ownerCreatedQueryQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.OWNER_CREATED_QUERY_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding ownerQueryUpdatedBinding() {
+        return BindingBuilder.bind(ownerUpdatedQueryQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.OWNER_UPDATED_QUERY_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding petCreatedBinding() {
+        return BindingBuilder.bind(petCreatedCommandQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.PET_CREATED_COMMAND_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding petCreatedQueryBinding() {
+        return BindingBuilder.bind(petCreatedQueryQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.PET_CREATED_QUERY_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding petUpdatedBinding() {
+        return BindingBuilder.bind(petUpdatedCommandQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.PET_UPDATE_COMMAND_ROUTING_KEY);
+
+    }
+
+    @Bean
+    public Binding petUpdatedQueryBinding() {
+        return BindingBuilder.bind(petUpdatedQueryQueue())
+                .to(customerExchange())
+                .with(RabbitMQConstants.PET_UPDATED_QUERY_ROUTING_KEY);
+    }
 }
