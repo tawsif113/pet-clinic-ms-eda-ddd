@@ -6,4 +6,6 @@ public record CreatePetCommand(
     String commandId,
     Long ownerId,
     String correlationId
-) {}
+) implements Command {
+
+}

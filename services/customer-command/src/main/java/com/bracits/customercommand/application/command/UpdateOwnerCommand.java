@@ -6,4 +6,6 @@ public record UpdateOwnerCommand(
     String email,
     String commandId,
     String correlationId
-) {}
+) implements Command {
+
+}
