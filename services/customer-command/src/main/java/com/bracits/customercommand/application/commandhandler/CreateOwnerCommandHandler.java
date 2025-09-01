@@ -36,6 +36,11 @@ public class CreateOwnerCommandHandler implements CommandHandler<CreateOwnerComm
         RabbitMQConstants.OWNER_CREATED_COMMAND_ROUTING_KEY,
         ownerCreatedEvent
     );
+    eventPublisher.publishEvent(
+            RabbitMQConstants.CUSTOMER_EXCHANGE,
+            RabbitMQConstants.OWNER_CREATED_QUERY_ROUTING_KEY,
+            ownerCreatedEvent
+    );
   }
 
   @Override

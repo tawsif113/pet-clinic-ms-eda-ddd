@@ -1,10 +1,5 @@
 package com.bracits.customerquery.infrastructure.config;
 
-import com.bracits.sharedevent.messaging.RabbitMQConstants;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -36,32 +31,5 @@ public class RabbitMQConfig {
     factory.setConnectionFactory(connectionFactory);
     factory.setMessageConverter(messageConverter);
     return factory;
-  }
-
-  @Bean
-  public TopicExchange customerExchange() {
-    return new TopicExchange(RabbitMQConstants.CUSTOMER_EXCHANGE);
-  }
-
-  @Bean
-  public Queue ownerCreatedQueryQueue(){
-    return new Queue(RabbitMQConstants.OWNER_CREATED_QUERY_QUEUE);
-  }
-  @Bean
-  public Queue ownerUpdatedQueryQueue(){
-    return new Queue(RabbitMQConstants.OWNER_UPDATED_QUERY_QUEUE);
-  }
-
-  @Bean
-  public Binding ownerQueryCreatedBinding() {
-    return BindingBuilder.bind(ownerCreatedQueryQueue())
-        .to(customerExchange())
-        .with(RabbitMQConstants.OWNER_CREATED_QUERY_ROUTING_KEY);
-  }
-  @Bean
-  public Binding ownerQueryUpdatedBinding() {
-    return BindingBuilder.bind(ownerUpdatedQueryQueue())
-        .to(customerExchange())
-        .with(RabbitMQConstants.OWNER_UPDATED_QUERY_ROUTING_KEY);
   }
 }
